@@ -1,49 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Top 5 AI Coding Trends 2025</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; background: #0f0f1a; color: #e0e0f0; min-height: 100vh; padding: 40px 20px; }
-    header { text-align: center; margin-bottom: 50px; }
-    header h1 { font-size: 2.4rem; background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
-    header p { color: #94a3b8; font-size: 1rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
-    .card { background: #1a1a2e; border: 1px solid #2d2d4e; border-radius: 16px; padding: 28px; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
-    .card:hover { transform: translateY(-6px); border-color: #6366f1; box-shadow: 0 8px 32px rgba(99,102,241,0.25); }
-    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; }
-    .card:nth-child(1)::before { background: linear-gradient(90deg, #a78bfa, #7c3aed); }
-    .card:nth-child(2)::before { background: linear-gradient(90deg, #60a5fa, #2563eb); }
-    .card:nth-child(3)::before { background: linear-gradient(90deg, #34d399, #059669); }
-    .card:nth-child(4)::before { background: linear-gradient(90deg, #fb923c, #ea580c); }
-    .card:nth-child(5)::before { background: linear-gradient(90deg, #f472b6, #db2777); }
-    .rank { font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #6366f1; margin-bottom: 10px; }
-    .card:nth-child(1) .rank { color: #a78bfa; } .card:nth-child(2) .rank { color: #60a5fa; } .card:nth-child(3) .rank { color: #34d399; } .card:nth-child(4) .rank { color: #fb923c; } .card:nth-child(5) .rank { color: #f472b6; }
-    .card h2 { font-size: 1.2rem; color: #f1f5f9; margin-bottom: 12px; line-height: 1.4; }
-    .card p { font-size: 0.9rem; color: #94a3b8; line-height: 1.7; margin-bottom: 20px; }
-    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-    .tag { background: #2d2d4e; color: #c4b5fd; font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
-    .learn-btn { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1px solid #4f4f7f; color: #c4b5fd; padding: 8px 18px; border-radius: 8px; font-size: 0.85rem; text-decoration: none; transition: background 0.2s, border-color 0.2s; cursor: pointer; }
-    .learn-btn:hover { background: #2d2d4e; border-color: #6366f1; color: #fff; }
-    .learn-btn svg { width: 14px; height: 14px; }
-    footer { text-align: center; margin-top: 60px; color: #475569; font-size: 0.82rem; }
-    footer span { color: #6366f1; }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Long Distance Running Posture Guide</title>
+<style>
+:root{--good:#22c55e;--bad:#ef4444;--accent:#6366f1;--bg:#0a0a14;--card:#13131f;--border:#2a2a3e;--text:#e2e8f0;--sub:#94a3b8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+h1{font-size:clamp(1.4rem,3vw,2.2rem);background:linear-gradient(90deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header{text-align:center;padding:40px 20px 20px}
+header p{color:var(--sub);margin-top:8px;font-size:.95rem}
+.speed-section{max-width:700px;margin:0 auto 40px;padding:0 20px}
+.speed-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
+.speed-card h2{font-size:1.1rem;margin-bottom:16px;color:#c4b5fd}
+.speed-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px;margin-bottom:20px}
+.speed-btn{background:var(--bg);border:1px solid var(--border);color:var(--sub);padding:10px 6px;border-radius:10px;cursor:pointer;font-size:.82rem;transition:all .2s;text-align:center;line-height:1.5}
+.speed-btn:hover{border-color:var(--accent);color:var(--text)}
+.speed-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.pace-display{background:#1a1a2e;border-radius:10px;padding:16px;display:flex;gap:16px;flex-wrap:wrap}
+.pace-item{flex:1;min-width:110px}
+.pace-item label{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--sub)}
+.pace-item span{display:block;font-size:1.2rem;font-weight:700;color:#a78bfa;margin-top:2px}
+.cadence-tip{margin-top:12px;font-size:.82rem;color:var(--sub);padding:10px;background:#0f0f1a;border-radius:8px;border-left:3px solid var(--accent)}
+.section-title{text-align:center;font-size:1.3rem;margin-bottom:24px;color:#e2e8f0}
+.compare-section{max-width:1000px;margin:0 auto 50px;padding:0 20px}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:600px){.compare-grid{grid-template-columns:1fr}}
+.posture-card{background:var(--card);border-radius:16px;padding:24px;border:2px solid transparent}
+.posture-card.good{border-color:#16a34a33}
+.posture-card.bad{border-color:#dc262633}
+.posture-card h3{font-size:1rem;margin-bottom:4px}
+.posture-card.good h3{color:var(--good)}
+.posture-card.bad h3{color:var(--bad)}
+.subtitle{font-size:.78rem;color:var(--sub);margin-bottom:16px}
+.runner-stage{background:#0f0f1a;border-radius:12px;height:200px;margin-bottom:16px}
+.runner-stage svg{width:100%;height:100%}
+.points{list-style:none}
+.points li{font-size:.82rem;padding:7px 0;border-bottom:1px solid #1a1a2e;display:flex;gap:8px;align-items:flex-start}
+.points li:last-child{border-bottom:none}
+.dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.good .dot{background:var(--good)}
+.bad .dot{background:var(--bad)}
+.pt-name{color:var(--text)}
+.pt-note{color:var(--sub);font-size:.75rem;display:block;margin-top:2px}
+.speed-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:4px 10px;border-radius:20px;margin-bottom:12px;display:inline-block}
+.good .speed-label{background:#14532d;color:#86efac}
+.bad .speed-label{background:#7f1d1d;color:#fca5a5}
+.theory-section{max-width:1000px;margin:0 auto 50px;padding:0 20px}
+.theory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.theory-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px}
+.t-icon{font-size:1.6rem;margin-bottom:10px}
+.theory-card h4{font-size:.95rem;color:#c4b5fd;margin-bottom:8px}
+.theory-card p{font-size:.82rem;color:var(--sub);line-height:1.7}
+.tag{display:inline-block;background:#1e1e3a;color:#818cf8;font-size:.68rem;padding:3px 8px;border-radius:20px;margin-bottom:8px}
+.table-section{max-width:1000px;margin:0 auto 50px;padding:0 20px}
+.injury-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.injury-table th{background:#1a1a2e;color:#c4b5fd;padding:10px 14px;text-align:left}
+.injury-table td{padding:10px 14px;border-bottom:1px solid #1a1a2e;color:var(--sub)}
+.injury-table tr:hover td{background:#13131f}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge.high{background:#7f1d1d;color:#fca5a5}
+.badge.med{background:#78350f;color:#fcd34d}
+.badge.low{background:#14532d;color:#86efac}
+footer{text-align:center;padding:40px 20px;color:var(--sub);font-size:.8rem;border-top:1px solid var(--border)}
+footer em{color:var(--accent);font-style:normal}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Top 5 AI Coding Trends</h1>
-    <p>The most impactful AI-driven shifts reshaping software development in 2025</p>
-  </header>
-  <div class="grid">
-    <div class="card"><div class="rank"># 1 Trend</div><h2>AI Coding Agents &amp; Autonomous Development</h2><p>Tools like Claude Code, Devin, and GitHub Copilot Workspace go beyond autocomplete — they plan, write, test, and debug entire features autonomously.</p><div class="tag-list"><span class="tag">Agentic AI</span><span class="tag">Claude Code</span><span class="tag">Devin</span></div><a class="learn-btn" href="https://www.anthropic.com/claude-code" target="_blank">Learn More <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a></div>
-    <div class="card"><div class="rank"># 2 Trend</div><h2>Vibe Coding — Natural Language to Full Apps</h2><p>Popularized by Andrej Karpathy, "vibe coding" means describing what you want in plain English and letting AI generate entire apps.</p><div class="tag-list"><span class="tag">Cursor</span><span class="tag">Bolt.new</span><span class="tag">Lovable</span></div><a class="learn-btn" href="https://cursor.com" target="_blank">Learn More <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a></div>
-    <div class="card"><div class="rank"># 3 Trend</div><h2>AI-Powered Code Review &amp; Bug Detection</h2><p>AI tools now review pull requests, catch security vulnerabilities, and explain legacy code. Platforms like CodeRabbit integrate directly into CI/CD pipelines.</p><div class="tag-list"><span class="tag">CodeRabbit</span><span class="tag">SonarQube AI</span><span class="tag">Security</span></div><a class="learn-btn" href="https://www.coderabbit.ai" target="_blank">Learn More <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a></div>
-    <div class="card"><div class="rank"># 4 Trend</div><h2>Small Local LLMs for Private Coding</h2><p>Models like Qwen2.5-Coder run entirely on your machine via Ollama. Developers get AI assistance without sending code to external servers.</p><div class="tag-list"><span class="tag">Ollama</span><span class="tag">Qwen2.5-Coder</span><span class="tag">DeepSeek</span></div><a class="learn-btn" href="https://ollama.com" target="_blank">Learn More <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a></div>
-    <div class="card"><div class="rank"># 5 Trend</div><h2>AI Test Generation &amp; Self-Healing Tests</h2><p>AI now writes unit tests and auto-fixes broken tests. Tools like Diffblue Cover and Meticulous reduce the testing bottleneck dramatically.</p><div class="tag-list"><span class="tag">Diffblue Cover</span><span class="tag">Meticulous</span><span class="tag">CI/CD</span></div><a class="learn-btn" href="https://www.diffblue.com" target="_blank">Learn More <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a></div>
+
+<header>
+  <h1>Long Distance Running Posture Guide</h1>
+  <p>Science-backed posture analysis for 10K runners — correct vs incorrect form</p>
+</header>
+
+<!-- SPEED SELECTOR -->
+<div class="speed-section">
+  <div class="speed-card">
+    <h2>Select Your 10K Target Time</h2>
+    <div class="speed-grid" id="speedGrid">
+      <button class="speed-btn" data-time="35">35 min<br><small>Elite</small></button>
+      <button class="speed-btn" data-time="40">40 min<br><small>Advanced</small></button>
+      <button class="speed-btn" data-time="45">45 min<br><small>Sub-45</small></button>
+      <button class="speed-btn active" data-time="50">50 min<br><small>Intermediate</small></button>
+      <button class="speed-btn" data-time="55">55 min<br><small>Steady</small></button>
+      <button class="speed-btn" data-time="60">60 min<br><small>Beginner</small></button>
+      <button class="speed-btn" data-time="70">70 min<br><small>Jogging</small></button>
+    </div>
+    <div class="pace-display">
+      <div class="pace-item"><label>Pace</label><span id="paceVal">5:00 /km</span></div>
+      <div class="pace-item"><label>Speed</label><span id="speedVal">12.0 km/h</span></div>
+      <div class="pace-item"><label>Cadence</label><span id="cadenceVal">174 spm</span></div>
+      <div class="pace-item"><label>Stride Length</label><span id="strideVal">1.15 m</span></div>
+    </div>
+    <div class="cadence-tip" id="cadenceTip"></div>
   </div>
-  <footer><p>Updated April 2025 &nbsp;|&nbsp; Curated by <span>AI Trends Watch</span></p></footer>
+</div>
+
+<!-- COMPARISON -->
+<div class="compare-section">
+  <div class="section-title">Posture Comparison</div>
+  <div class="compare-grid">
+
+    <div class="posture-card good">
+      <span class="speed-label">&#10003; Correct Form</span>
+      <h3>Optimal Running Posture</h3>
+      <p class="subtitle">Efficient biomechanics — less energy waste, lower injury risk</p>
+      <div class="runner-stage">
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="178" x2="300" y2="178" stroke="#2a2a3e" stroke-width="2"/>
+          <ellipse cx="148" cy="181" rx="24" ry="5" fill="#1a1a2e"/>
+          <g transform="translate(148,178)">
+            <g transform="rotate(-7)">
+              <line x1="0" y1="-42" x2="0" y2="-85" stroke="#22c55e" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="0" y1="-85" x2="0" y2="-92" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="0" cy="-104" r="12" fill="#0f1a14" stroke="#22c55e" stroke-width="2.5"/>
+              <circle cx="5" cy="-102" r="2.5" fill="#22c55e"/>
+              <line x1="0" y1="-76" x2="20" y2="-60" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="-60" x2="12" y2="-44" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="-76" x2="-20" y2="-60" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-20" y1="-60" x2="-10" y2="-46" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="-42" x2="18" y2="-18" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="18" y1="-18" x2="10" y2="0" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="6" y1="0" x2="16" y2="0" stroke="#60a5fa" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="0" y1="-42" x2="-18" y2="-16" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-18" y1="-16" x2="-26" y2="0" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-30" y1="0" x2="-20" y2="0" stroke="#22c55e" stroke-width="3.5" stroke-linecap="round"/>
+            </g>
+          </g>
+          <text x="4" y="22" fill="#22c55e" font-size="9.5" font-family="sans-serif">&#10003; 7 deg forward lean</text>
+          <text x="4" y="38" fill="#22c55e" font-size="9.5" font-family="sans-serif">&#10003; 90 deg arm bend</text>
+          <text x="4" y="54" fill="#22c55e" font-size="9.5" font-family="sans-serif">&#10003; Eyes on horizon</text>
+          <text x="162" y="148" fill="#60a5fa" font-size="9.5" font-family="sans-serif">&#10003; Midfoot strike</text>
+          <text x="162" y="163" fill="#60a5fa" font-size="9.5" font-family="sans-serif">&#10003; Under hip</text>
+          <line x1="148" y1="178" x2="138" y2="74" stroke="#22c55e22" stroke-width="1.5" stroke-dasharray="4,4"/>
+        </svg>
+      </div>
+      <ul class="points">
+        <li><span class="dot"></span><div><span class="pt-name">Head neutral, eyes 20–30m ahead</span><span class="pt-note">Keeps airway open, reduces cervical load</span></div></li>
+        <li><span class="dot"></span><div><span class="pt-name">Shoulders relaxed and low</span><span class="pt-note">Prevents wasting 8–12% energy on tension</span></div></li>
+        <li><span class="pt-name pt-note" style="display:none"></span><div><span class="pt-name">Arms bent 90°, swinging forward-back</span><span class="pt-note">Powers hip drive via shoulder-hip coupling</span></div></li>
+        <li><span class="dot"></span><div><span class="pt-name">5–10° forward lean from the ankles</span><span class="pt-note">Uses gravity for propulsion — free energy</span></div></li>
+        <li><span class="dot"></span><div><span class="pt-name">Midfoot strike directly under the hip</span><span class="pt-note">Reduces braking force by up to 60%</span></div></li>
+        <li><span class="dot"></span><div><span class="pt-name">High cadence 170–182 spm</span><span class="pt-note">Shorter ground contact = less impact per step</span></div></li>
+      </ul>
+    </div>
+
+    <div class="posture-card bad">
+      <span class="speed-label">&#10007; Incorrect Form</span>
+      <h3>Common Posture Mistakes</h3>
+      <p class="subtitle">Energy leaks and injury risks to avoid</p>
+      <div class="runner-stage">
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="178" x2="300" y2="178" stroke="#2a2a3e" stroke-width="2"/>
+          <ellipse cx="148" cy="181" rx="24" ry="5" fill="#1a1a2e"/>
+          <g transform="translate(148,178)">
+            <g transform="rotate(5)">
+              <line x1="0" y1="-42" x2="0" y2="-82" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="0" y1="-82" x2="5" y2="-90" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="7" cy="-102" r="12" fill="#1a0a0a" stroke="#ef4444" stroke-width="2.5"/>
+              <circle cx="4" cy="-107" r="2.5" fill="#ef4444"/>
+              <line x1="0" y1="-74" x2="22" y2="-60" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="22" y1="-60" x2="8" y2="-46" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="-74" x2="-20" y2="-56" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-20" y1="-56" x2="-4" y2="-40" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="-42" x2="24" y2="-16" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="24" y1="-16" x2="38" y2="0" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="30" y1="0" x2="42" y2="0" stroke="#f87171" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="42" y1="-4" x2="48" y2="-12" stroke="#ef444499" stroke-width="2"/>
+              <line x1="44" y1="-1" x2="51" y2="-7" stroke="#ef444499" stroke-width="2"/>
+              <line x1="0" y1="-42" x2="-16" y2="-14" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-16" y1="-14" x2="-22" y2="0" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-26" y1="0" x2="-18" y2="0" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
+            </g>
+          </g>
+          <text x="4" y="22" fill="#ef4444" font-size="9.5" font-family="sans-serif">&#10007; Backward lean</text>
+          <text x="4" y="38" fill="#ef4444" font-size="9.5" font-family="sans-serif">&#10007; Head looking down</text>
+          <text x="4" y="54" fill="#ef4444" font-size="9.5" font-family="sans-serif">&#10007; Arms crossing body</text>
+          <text x="170" y="148" fill="#f87171" font-size="9.5" font-family="sans-serif">&#10007; Heel strike</text>
+          <text x="170" y="163" fill="#f87171" font-size="9.5" font-family="sans-serif">&#10007; Overstride</text>
+          <text x="194" y="134" fill="#ef444488" font-size="9" font-family="sans-serif">impact!</text>
+        </svg>
+      </div>
+      <ul class="points">
+        <li><span class="dot"></span><div><span class="pt-name">Head down / neck craned forward</span><span class="pt-note">Each inch adds ~5 kg effective load on spine</span></div></li>
+        <li><span class="dot"></span><div><span class="pt-name">Shoulders raised and tense</span><span class="pt-note">Wastes energy and restricts breathing</span></div></li>
+        <li><span class="dot"></span><div><span class="pt-name">Arms crossing the body midline</span><span class="pt-note">Creates torso rotation your core must fight</span></div></li>
+        <li><span class="dot"></span><div><span class="pt-name">Backward or fully upright stance</span><span class="pt-note">No gravity assist — legs do all the work</span></div></li>
+        <li><span class="dot"></span><div><span class="pt-name">Heel strike far in front of hips</span><span class="pt-note">3x body weight impact spike up the leg</span></div></li>
+        <li><span class="dot"></span><div><span class="pt-name">Low cadence with overstriding</span><span class="pt-note">Each stride acts as a brake, slowing you</span></div></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- THEORY -->
+<div class="theory-section">
+  <div class="section-title">The Science Behind Posture</div>
+  <div class="theory-grid">
+    <div class="theory-card">
+      <div class="t-icon">&#9889;</div>
+      <span class="tag">Pose Method — Dr. Nicholas Romanov</span>
+      <h4>Gravity as a Free Engine</h4>
+      <p>The Pose Method teaches runners to use gravity for forward propulsion. A forward lean from the ankles causes the centre of mass to fall forward — a controlled fall. Legs only reposition quickly underneath, not push. Studies show Pose-trained runners reduce ground contact time by 18% and knee joint torque by 50%.</p>
+    </div>
+    <div class="theory-card">
+      <div class="t-icon">&#129460;</div>
+      <span class="tag">Biomechanics — Ground Reaction Force</span>
+      <h4>The Cost of Heel Striking</h4>
+      <p>Heel striking produces a sharp GRF spike of 1.5–3x body weight that travels up the leg in milliseconds. Midfoot striking under the hips spreads this force over a longer window, reducing peak impact by up to 60%. A 70 kg runner eliminates tonnes of cumulative force over a 10K with correct foot placement alone.</p>
+    </div>
+    <div class="theory-card">
+      <div class="t-icon">&#128260;</div>
+      <span class="tag">Cadence Research — Jack Daniels</span>
+      <h4>The 180 SPM Principle</h4>
+      <p>Running coach Jack Daniels observed elite runners at all speeds hold around 180 steps per minute. Higher cadence naturally shortens stride, pulling foot strike under the hip. Heiderscheit (2011) found a 5% cadence increase reduces patellofemoral loading by 20% — key to preventing IT band syndrome and runner's knee.</p>
+    </div>
+    <div class="theory-card">
+      <div class="t-icon">&#127992;</div>
+      <span class="tag">Elastic Energy — Tendons as Springs</span>
+      <h4>Biological Springs in Your Legs</h4>
+      <p>The Achilles tendon and plantar fascia store elastic energy during foot strike and release it at toe-off — returning up to 35% of energy for free. Midfoot striking maximises this recoil. Heel striking bypasses the spring mechanism entirely, forcing muscles to generate all propulsive force from scratch.</p>
+    </div>
+    <div class="theory-card">
+      <div class="t-icon">&#129504;</div>
+      <span class="tag">Physiology — Running Economy</span>
+      <h4>Posture Affects Oxygen Cost</h4>
+      <p>Running economy measures oxygen cost at a given pace. Poor posture — tensed shoulders, crossed arms, backward lean — raises energy expenditure by 8–15%. For a 50-min 10K runner, that equals 3–5 extra minutes. Relaxed upper body and forward lean directly improves economy, enabling faster paces at the same effort.</p>
+    </div>
+    <div class="theory-card">
+      <div class="t-icon">&#129504;</div>
+      <span class="tag">Neuromuscular — Arm-Hip Coupling</span>
+      <h4>Arms Drive the Legs</h4>
+      <p>The nervous system coordinates arm swing with the opposite leg (contralateral coupling). Correct 90 degree arm swing amplifies hip extension and drives knee lift automatically. Arms crossing the midline create torso rotation the core must resist — wasting energy. Studies show proper arm mechanics improve speed 3–5% with no change in leg effort.</p>
+    </div>
+  </div>
+</div>
+
+<!-- INJURY TABLE -->
+<div class="table-section">
+  <div class="section-title">Posture Faults and Common Injuries</div>
+  <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border)">
+    <table class="injury-table">
+      <thead>
+        <tr><th>Posture Fault</th><th>Common Injury</th><th>Mechanism</th><th>Risk</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Heel strike / overstride</td><td>Shin splints, stress fractures</td><td>High-impact GRF spike up tibia</td><td><span class="badge high">High</span></td></tr>
+        <tr><td>Low cadence under 160 spm</td><td>IT Band Syndrome, Runner's Knee</td><td>Increased hip adduction and knee load</td><td><span class="badge high">High</span></td></tr>
+        <tr><td>Forward head posture</td><td>Cervical strain, upper back pain</td><td>+5 kg load per inch forward head tilt</td><td><span class="badge med">Medium</span></td></tr>
+        <tr><td>Backward lean</td><td>Hamstring strain, hip flexor tightness</td><td>Overactivation of hamstrings to brake</td><td><span class="badge med">Medium</span></td></tr>
+        <tr><td>Arms crossing midline</td><td>Lower back pain, shoulder impingement</td><td>Torso rotation causes lumbar compensation</td><td><span class="badge med">Medium</span></td></tr>
+        <tr><td>Shoulders hunched</td><td>Neck stiffness, reduced breathing capacity</td><td>Restricted rib cage expansion</td><td><span class="badge low">Low-Med</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  <p>Research sources: Dr. Nicholas Romanov (Pose Method) &bull; Jack Daniels (Running Formula) &bull; Danny Dreyer (Chi Running) &bull; Heiderscheit et al. 2011 &nbsp;|&nbsp; Built with <em>Claude Code</em></p>
+</footer>
+
+<script>
+var targets = {
+  35:{pace:"3:30",speed:"17.1",cadence:182,stride:1.57,tip:"Elite pace. Maximise forward lean and fastest possible turnover. Every millisecond of ground contact time matters at this intensity."},
+  40:{pace:"4:00",speed:"15.0",cadence:180,stride:1.39,tip:"Advanced pace. Maintain 180 spm. Relaxed shoulders are critical — tension costs significant energy at this effort level."},
+  45:{pace:"4:30",speed:"13.3",cadence:178,stride:1.25,tip:"Sub-45 pace requires efficient mechanics. Focus on midfoot strike and 90 degree arm bend to maximise elastic energy return."},
+  50:{pace:"5:00",speed:"12.0",cadence:174,stride:1.15,tip:"Intermediate pace. Target 170–175 spm. Use a metronome app to train cadence — higher cadence means less impact force per step."},
+  55:{pace:"5:30",speed:"10.9",cadence:170,stride:1.07,tip:"Steady pace. Most energy waste at this pace is postural. Prioritise forward lean from ankles and keeping shoulders low and relaxed."},
+  60:{pace:"6:00",speed:"10.0",cadence:168,stride:0.99,tip:"Beginner pace. Focus on breathing rhythm and shoulder position. Posture corrections here prevent long-term chronic injury."},
+  70:{pace:"7:00",speed:"8.6",cadence:163,stride:0.88,tip:"Jogging pace. Even at easy effort, correct posture prevents repetitive strain. Practice neutral head position and midfoot landing every run."}
+};
+function update(m){
+  var d=targets[m];
+  document.getElementById("paceVal").textContent=d.pace+" /km";
+  document.getElementById("speedVal").textContent=d.speed+" km/h";
+  document.getElementById("cadenceVal").textContent=d.cadence+" spm";
+  document.getElementById("strideVal").textContent=d.stride+" m";
+  document.getElementById("cadenceTip").textContent="Tip: "+d.tip;
+}
+document.getElementById("speedGrid").addEventListener("click",function(e){
+  var b=e.target.closest(".speed-btn");
+  if(!b)return;
+  document.querySelectorAll(".speed-btn").forEach(function(x){x.classList.remove("active");});
+  b.classList.add("active");
+  update(parseInt(b.dataset.time));
+});
+update(50);
+</script>
 </body>
 </html>
