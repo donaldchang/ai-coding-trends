@@ -1,293 +1,468 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Long Distance Running Posture Guide</title>
+<title>跑步節奏動畫器</title>
 <style>
-:root{--good:#22c55e;--bad:#ef4444;--accent:#6366f1;--bg:#0a0a14;--card:#13131f;--border:#2a2a3e;--text:#e2e8f0;--sub:#94a3b8}
+:root{--bg:#0a0a14;--card:#13131f;--border:#2a2a3e;--accent:#6366f1;--purple:#a78bfa;--blue:#60a5fa;--text:#e2e8f0;--sub:#94a3b8}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-h1{font-size:clamp(1.4rem,3vw,2.2rem);background:linear-gradient(90deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+body{font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 header{text-align:center;padding:40px 20px 20px}
+h1{font-size:clamp(1.5rem,3.5vw,2.3rem);background:linear-gradient(90deg,var(--purple),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 header p{color:var(--sub);margin-top:8px;font-size:.95rem}
-.speed-section{max-width:700px;margin:0 auto 40px;padding:0 20px}
-.speed-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
-.speed-card h2{font-size:1.1rem;margin-bottom:16px;color:#c4b5fd}
-.speed-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px;margin-bottom:20px}
-.speed-btn{background:var(--bg);border:1px solid var(--border);color:var(--sub);padding:10px 6px;border-radius:10px;cursor:pointer;font-size:.82rem;transition:all .2s;text-align:center;line-height:1.5}
-.speed-btn:hover{border-color:var(--accent);color:var(--text)}
-.speed-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
-.pace-display{background:#1a1a2e;border-radius:10px;padding:16px;display:flex;gap:16px;flex-wrap:wrap}
-.pace-item{flex:1;min-width:110px}
-.pace-item label{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--sub)}
-.pace-item span{display:block;font-size:1.2rem;font-weight:700;color:#a78bfa;margin-top:2px}
-.cadence-tip{margin-top:12px;font-size:.82rem;color:var(--sub);padding:10px;background:#0f0f1a;border-radius:8px;border-left:3px solid var(--accent)}
-.section-title{text-align:center;font-size:1.3rem;margin-bottom:24px;color:#e2e8f0}
-.compare-section{max-width:1000px;margin:0 auto 50px;padding:0 20px}
-.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:600px){.compare-grid{grid-template-columns:1fr}}
-.posture-card{background:var(--card);border-radius:16px;padding:24px;border:2px solid transparent}
-.posture-card.good{border-color:#16a34a33}
-.posture-card.bad{border-color:#dc262633}
-.posture-card h3{font-size:1rem;margin-bottom:4px}
-.posture-card.good h3{color:var(--good)}
-.posture-card.bad h3{color:var(--bad)}
-.subtitle{font-size:.78rem;color:var(--sub);margin-bottom:16px}
-.runner-stage{background:#0f0f1a;border-radius:12px;height:200px;margin-bottom:16px}
-.runner-stage svg{width:100%;height:100%}
-.points{list-style:none}
-.points li{font-size:.82rem;padding:7px 0;border-bottom:1px solid #1a1a2e;display:flex;gap:8px;align-items:flex-start}
-.points li:last-child{border-bottom:none}
-.dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
-.good .dot{background:var(--good)}
-.bad .dot{background:var(--bad)}
-.pt-name{color:var(--text)}
-.pt-note{color:var(--sub);font-size:.75rem;display:block;margin-top:2px}
-.speed-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:4px 10px;border-radius:20px;margin-bottom:12px;display:inline-block}
-.good .speed-label{background:#14532d;color:#86efac}
-.bad .speed-label{background:#7f1d1d;color:#fca5a5}
-.theory-section{max-width:1000px;margin:0 auto 50px;padding:0 20px}
-.theory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.theory-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px}
-.t-icon{font-size:1.6rem;margin-bottom:10px}
-.theory-card h4{font-size:.95rem;color:#c4b5fd;margin-bottom:8px}
-.theory-card p{font-size:.82rem;color:var(--sub);line-height:1.7}
-.tag{display:inline-block;background:#1e1e3a;color:#818cf8;font-size:.68rem;padding:3px 8px;border-radius:20px;margin-bottom:8px}
-.table-section{max-width:1000px;margin:0 auto 50px;padding:0 20px}
-.injury-table{width:100%;border-collapse:collapse;font-size:.82rem}
-.injury-table th{background:#1a1a2e;color:#c4b5fd;padding:10px 14px;text-align:left}
-.injury-table td{padding:10px 14px;border-bottom:1px solid #1a1a2e;color:var(--sub)}
-.injury-table tr:hover td{background:#13131f}
-.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.7rem;font-weight:600}
-.badge.high{background:#7f1d1d;color:#fca5a5}
-.badge.med{background:#78350f;color:#fcd34d}
-.badge.low{background:#14532d;color:#86efac}
-footer{text-align:center;padding:40px 20px;color:var(--sub);font-size:.8rem;border-top:1px solid var(--border)}
-footer em{color:var(--accent);font-style:normal}
+.wrap{max-width:700px;margin:0 auto;padding:0 16px 40px}
+
+/* Canvas stage */
+.stage{position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:16px}
+canvas{display:block;width:100%;height:auto}
+.badge-row{position:absolute;bottom:12px;left:12px;display:flex;gap:8px;pointer-events:none}
+.badge{background:rgba(10,10,20,0.72);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:.78rem;color:var(--sub)}
+.badge span{color:var(--text);font-weight:700}
+
+/* Controls card */
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 24px;margin-bottom:16px}
+.ctrl-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.ctrl-label{font-size:.9rem;color:var(--sub)}
+.ctrl-val{font-size:1.05rem;font-weight:700;color:var(--text)}
+.ctrl-sub{font-size:.78rem;color:var(--sub);margin-top:1px}
+.rating{display:inline-block;padding:2px 9px;border-radius:20px;font-size:.72rem;font-weight:700;margin-left:8px}
+.rating.green{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3)}
+.rating.yellow{background:rgba(234,179,8,.15);color:#facc15;border:1px solid rgba(234,179,8,.3)}
+.rating.red{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;outline:none;cursor:pointer;margin:8px 0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 0 0 3px rgba(99,102,241,.25),0 0 10px rgba(99,102,241,.5)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--accent);cursor:pointer;border:none;box-shadow:0 0 0 3px rgba(99,102,241,.25),0 0 10px rgba(99,102,241,.5)}
+.ctrl-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;gap:12px}
+.check-row{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--sub);cursor:pointer;user-select:none}
+.check-row input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
+.btn{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:9px 22px;font-size:.88rem;font-weight:700;cursor:pointer;transition:opacity .2s;letter-spacing:.02em}
+.btn:hover{opacity:.85}
+.btn.paused{background:#374151}
+
+/* Metrics grid */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 10px;text-align:center}
+.metric-val{font-size:1.15rem;font-weight:700;color:var(--purple);margin-bottom:4px}
+.metric-lbl{font-size:.72rem;color:var(--sub)}
+
+/* Tip */
+.tip{border-radius:12px;padding:14px 18px;font-size:.84rem;line-height:1.6;color:var(--text);border:1px solid var(--border);margin-bottom:16px;border-left-width:4px}
+.tip.green{background:rgba(34,197,94,.07);border-left-color:#22c55e}
+.tip.yellow{background:rgba(234,179,8,.07);border-left-color:#eab308}
+.tip.red{background:rgba(239,68,68,.07);border-left-color:#ef4444}
+.tip strong{display:block;margin-bottom:3px}
+
+footer{text-align:center;padding:20px;color:var(--sub);font-size:.78rem;border-top:1px solid var(--border)}
+
+@media(max-width:480px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+}
 </style>
 </head>
 <body>
-
 <header>
-  <h1>Long Distance Running Posture Guide</h1>
-  <p>Science-backed posture analysis for 10K runners — correct vs incorrect form</p>
+  <h1>跑步節奏動畫器</h1>
+  <p>調整速度與步頻，即時預覽跑步姿態動畫</p>
 </header>
 
-<!-- SPEED SELECTOR -->
-<div class="speed-section">
-  <div class="speed-card">
-    <h2>Select Your 10K Target Time</h2>
-    <div class="speed-grid" id="speedGrid">
-      <button class="speed-btn" data-time="35">35 min<br><small>Elite</small></button>
-      <button class="speed-btn" data-time="40">40 min<br><small>Advanced</small></button>
-      <button class="speed-btn" data-time="45">45 min<br><small>Sub-45</small></button>
-      <button class="speed-btn active" data-time="50">50 min<br><small>Intermediate</small></button>
-      <button class="speed-btn" data-time="55">55 min<br><small>Steady</small></button>
-      <button class="speed-btn" data-time="60">60 min<br><small>Beginner</small></button>
-      <button class="speed-btn" data-time="70">70 min<br><small>Jogging</small></button>
+<div class="wrap">
+  <!-- Stage -->
+  <div class="stage">
+    <canvas id="cv" width="600" height="340"></canvas>
+    <div class="badge-row">
+      <div class="badge">速度 <span id="bSpeed">12.0</span> km/h</div>
+      <div class="badge">步頻 <span id="bCad">174</span> spm</div>
     </div>
-    <div class="pace-display">
-      <div class="pace-item"><label>Pace</label><span id="paceVal">5:00 /km</span></div>
-      <div class="pace-item"><label>Speed</label><span id="speedVal">12.0 km/h</span></div>
-      <div class="pace-item"><label>Cadence</label><span id="cadenceVal">174 spm</span></div>
-      <div class="pace-item"><label>Stride Length</label><span id="strideVal">1.15 m</span></div>
-    </div>
-    <div class="cadence-tip" id="cadenceTip"></div>
   </div>
-</div>
 
-<!-- COMPARISON -->
-<div class="compare-section">
-  <div class="section-title">Posture Comparison</div>
-  <div class="compare-grid">
-
-    <div class="posture-card good">
-      <span class="speed-label">&#10003; Correct Form</span>
-      <h3>Optimal Running Posture</h3>
-      <p class="subtitle">Efficient biomechanics — less energy waste, lower injury risk</p>
-      <div class="runner-stage">
-        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-          <line x1="0" y1="178" x2="300" y2="178" stroke="#2a2a3e" stroke-width="2"/>
-          <ellipse cx="148" cy="181" rx="24" ry="5" fill="#1a1a2e"/>
-          <g transform="translate(148,178)">
-            <g transform="rotate(-7)">
-              <line x1="0" y1="-42" x2="0" y2="-85" stroke="#22c55e" stroke-width="3.5" stroke-linecap="round"/>
-              <line x1="0" y1="-85" x2="0" y2="-92" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="0" cy="-104" r="12" fill="#0f1a14" stroke="#22c55e" stroke-width="2.5"/>
-              <circle cx="5" cy="-102" r="2.5" fill="#22c55e"/>
-              <line x1="0" y1="-76" x2="20" y2="-60" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="20" y1="-60" x2="12" y2="-44" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="0" y1="-76" x2="-20" y2="-60" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-20" y1="-60" x2="-10" y2="-46" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="0" y1="-42" x2="18" y2="-18" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="18" y1="-18" x2="10" y2="0" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="6" y1="0" x2="16" y2="0" stroke="#60a5fa" stroke-width="3.5" stroke-linecap="round"/>
-              <line x1="0" y1="-42" x2="-18" y2="-16" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-18" y1="-16" x2="-26" y2="0" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-30" y1="0" x2="-20" y2="0" stroke="#22c55e" stroke-width="3.5" stroke-linecap="round"/>
-            </g>
-          </g>
-          <text x="4" y="22" fill="#22c55e" font-size="9.5" font-family="sans-serif">&#10003; 7 deg forward lean</text>
-          <text x="4" y="38" fill="#22c55e" font-size="9.5" font-family="sans-serif">&#10003; 90 deg arm bend</text>
-          <text x="4" y="54" fill="#22c55e" font-size="9.5" font-family="sans-serif">&#10003; Eyes on horizon</text>
-          <text x="162" y="148" fill="#60a5fa" font-size="9.5" font-family="sans-serif">&#10003; Midfoot strike</text>
-          <text x="162" y="163" fill="#60a5fa" font-size="9.5" font-family="sans-serif">&#10003; Under hip</text>
-          <line x1="148" y1="178" x2="138" y2="74" stroke="#22c55e22" stroke-width="1.5" stroke-dasharray="4,4"/>
-        </svg>
+  <!-- Controls -->
+  <div class="card">
+    <!-- Speed -->
+    <div class="ctrl-row">
+      <div>
+        <div class="ctrl-label">跑步速度</div>
+        <div class="ctrl-sub" id="paceDisplay">配速 5:00/km</div>
       </div>
-      <ul class="points">
-        <li><span class="dot"></span><div><span class="pt-name">Head neutral, eyes 20–30m ahead</span><span class="pt-note">Keeps airway open, reduces cervical load</span></div></li>
-        <li><span class="dot"></span><div><span class="pt-name">Shoulders relaxed and low</span><span class="pt-note">Prevents wasting 8–12% energy on tension</span></div></li>
-        <li><span class="pt-name pt-note" style="display:none"></span><div><span class="pt-name">Arms bent 90°, swinging forward-back</span><span class="pt-note">Powers hip drive via shoulder-hip coupling</span></div></li>
-        <li><span class="dot"></span><div><span class="pt-name">5–10° forward lean from the ankles</span><span class="pt-note">Uses gravity for propulsion — free energy</span></div></li>
-        <li><span class="dot"></span><div><span class="pt-name">Midfoot strike directly under the hip</span><span class="pt-note">Reduces braking force by up to 60%</span></div></li>
-        <li><span class="dot"></span><div><span class="pt-name">High cadence 170–182 spm</span><span class="pt-note">Shorter ground contact = less impact per step</span></div></li>
-      </ul>
-    </div>
-
-    <div class="posture-card bad">
-      <span class="speed-label">&#10007; Incorrect Form</span>
-      <h3>Common Posture Mistakes</h3>
-      <p class="subtitle">Energy leaks and injury risks to avoid</p>
-      <div class="runner-stage">
-        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-          <line x1="0" y1="178" x2="300" y2="178" stroke="#2a2a3e" stroke-width="2"/>
-          <ellipse cx="148" cy="181" rx="24" ry="5" fill="#1a1a2e"/>
-          <g transform="translate(148,178)">
-            <g transform="rotate(5)">
-              <line x1="0" y1="-42" x2="0" y2="-82" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
-              <line x1="0" y1="-82" x2="5" y2="-90" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="7" cy="-102" r="12" fill="#1a0a0a" stroke="#ef4444" stroke-width="2.5"/>
-              <circle cx="4" cy="-107" r="2.5" fill="#ef4444"/>
-              <line x1="0" y1="-74" x2="22" y2="-60" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="22" y1="-60" x2="8" y2="-46" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="0" y1="-74" x2="-20" y2="-56" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-20" y1="-56" x2="-4" y2="-40" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="0" y1="-42" x2="24" y2="-16" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="24" y1="-16" x2="38" y2="0" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="30" y1="0" x2="42" y2="0" stroke="#f87171" stroke-width="3.5" stroke-linecap="round"/>
-              <line x1="42" y1="-4" x2="48" y2="-12" stroke="#ef444499" stroke-width="2"/>
-              <line x1="44" y1="-1" x2="51" y2="-7" stroke="#ef444499" stroke-width="2"/>
-              <line x1="0" y1="-42" x2="-16" y2="-14" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-16" y1="-14" x2="-22" y2="0" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-26" y1="0" x2="-18" y2="0" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
-            </g>
-          </g>
-          <text x="4" y="22" fill="#ef4444" font-size="9.5" font-family="sans-serif">&#10007; Backward lean</text>
-          <text x="4" y="38" fill="#ef4444" font-size="9.5" font-family="sans-serif">&#10007; Head looking down</text>
-          <text x="4" y="54" fill="#ef4444" font-size="9.5" font-family="sans-serif">&#10007; Arms crossing body</text>
-          <text x="170" y="148" fill="#f87171" font-size="9.5" font-family="sans-serif">&#10007; Heel strike</text>
-          <text x="170" y="163" fill="#f87171" font-size="9.5" font-family="sans-serif">&#10007; Overstride</text>
-          <text x="194" y="134" fill="#ef444488" font-size="9" font-family="sans-serif">impact!</text>
-        </svg>
+      <div style="text-align:right">
+        <div class="ctrl-val" id="speedDisplay">12.0 km/h</div>
       </div>
-      <ul class="points">
-        <li><span class="dot"></span><div><span class="pt-name">Head down / neck craned forward</span><span class="pt-note">Each inch adds ~5 kg effective load on spine</span></div></li>
-        <li><span class="dot"></span><div><span class="pt-name">Shoulders raised and tense</span><span class="pt-note">Wastes energy and restricts breathing</span></div></li>
-        <li><span class="dot"></span><div><span class="pt-name">Arms crossing the body midline</span><span class="pt-note">Creates torso rotation your core must fight</span></div></li>
-        <li><span class="dot"></span><div><span class="pt-name">Backward or fully upright stance</span><span class="pt-note">No gravity assist — legs do all the work</span></div></li>
-        <li><span class="dot"></span><div><span class="pt-name">Heel strike far in front of hips</span><span class="pt-note">3x body weight impact spike up the leg</span></div></li>
-        <li><span class="dot"></span><div><span class="pt-name">Low cadence with overstriding</span><span class="pt-note">Each stride acts as a brake, slowing you</span></div></li>
-      </ul>
     </div>
+    <input type="range" id="speedSlider" min="5" max="22" step="0.5" value="12"/>
 
+    <div style="height:14px"></div>
+
+    <!-- Cadence -->
+    <div class="ctrl-row">
+      <div>
+        <div class="ctrl-label">跑步步頻</div>
+      </div>
+      <div style="text-align:right">
+        <div class="ctrl-val" id="cadDisplay">174 spm <span class="rating green" id="cadRating">● 優秀</span></div>
+      </div>
+    </div>
+    <input type="range" id="cadSlider" min="140" max="200" step="1" value="174"/>
+
+    <div class="ctrl-footer">
+      <label class="check-row">
+        <input type="checkbox" id="autoLink"/> 速度自動連動步頻
+      </label>
+      <button class="btn" id="pauseBtn">⏸ 暫停</button>
+    </div>
+  </div>
+
+  <!-- Metrics -->
+  <div class="metrics">
+    <div class="metric"><div class="metric-val" id="mPace">5:00</div><div class="metric-lbl">配速 /km</div></div>
+    <div class="metric"><div class="metric-val" id="mStride">1.15m</div><div class="metric-lbl">步幅</div></div>
+    <div class="metric"><div class="metric-val" id="mLean">8°</div><div class="metric-lbl">前傾角</div></div>
+    <div class="metric"><div class="metric-val" id="mGCT">219ms</div><div class="metric-lbl">接地時間</div></div>
+  </div>
+
+  <!-- Tip -->
+  <div class="tip" id="tipCard">
+    <strong id="tipTitle">步頻優秀！</strong>
+    <span id="tipBody">你的步頻在理想範圍，有助於減少衝擊力並提升跑步效率，繼續保持！</span>
   </div>
 </div>
 
-<!-- THEORY -->
-<div class="theory-section">
-  <div class="section-title">The Science Behind Posture</div>
-  <div class="theory-grid">
-    <div class="theory-card">
-      <div class="t-icon">&#9889;</div>
-      <span class="tag">Pose Method — Dr. Nicholas Romanov</span>
-      <h4>Gravity as a Free Engine</h4>
-      <p>The Pose Method teaches runners to use gravity for forward propulsion. A forward lean from the ankles causes the centre of mass to fall forward — a controlled fall. Legs only reposition quickly underneath, not push. Studies show Pose-trained runners reduce ground contact time by 18% and knee joint torque by 50%.</p>
-    </div>
-    <div class="theory-card">
-      <div class="t-icon">&#129460;</div>
-      <span class="tag">Biomechanics — Ground Reaction Force</span>
-      <h4>The Cost of Heel Striking</h4>
-      <p>Heel striking produces a sharp GRF spike of 1.5–3x body weight that travels up the leg in milliseconds. Midfoot striking under the hips spreads this force over a longer window, reducing peak impact by up to 60%. A 70 kg runner eliminates tonnes of cumulative force over a 10K with correct foot placement alone.</p>
-    </div>
-    <div class="theory-card">
-      <div class="t-icon">&#128260;</div>
-      <span class="tag">Cadence Research — Jack Daniels</span>
-      <h4>The 180 SPM Principle</h4>
-      <p>Running coach Jack Daniels observed elite runners at all speeds hold around 180 steps per minute. Higher cadence naturally shortens stride, pulling foot strike under the hip. Heiderscheit (2011) found a 5% cadence increase reduces patellofemoral loading by 20% — key to preventing IT band syndrome and runner's knee.</p>
-    </div>
-    <div class="theory-card">
-      <div class="t-icon">&#127992;</div>
-      <span class="tag">Elastic Energy — Tendons as Springs</span>
-      <h4>Biological Springs in Your Legs</h4>
-      <p>The Achilles tendon and plantar fascia store elastic energy during foot strike and release it at toe-off — returning up to 35% of energy for free. Midfoot striking maximises this recoil. Heel striking bypasses the spring mechanism entirely, forcing muscles to generate all propulsive force from scratch.</p>
-    </div>
-    <div class="theory-card">
-      <div class="t-icon">&#129504;</div>
-      <span class="tag">Physiology — Running Economy</span>
-      <h4>Posture Affects Oxygen Cost</h4>
-      <p>Running economy measures oxygen cost at a given pace. Poor posture — tensed shoulders, crossed arms, backward lean — raises energy expenditure by 8–15%. For a 50-min 10K runner, that equals 3–5 extra minutes. Relaxed upper body and forward lean directly improves economy, enabling faster paces at the same effort.</p>
-    </div>
-    <div class="theory-card">
-      <div class="t-icon">&#129504;</div>
-      <span class="tag">Neuromuscular — Arm-Hip Coupling</span>
-      <h4>Arms Drive the Legs</h4>
-      <p>The nervous system coordinates arm swing with the opposite leg (contralateral coupling). Correct 90 degree arm swing amplifies hip extension and drives knee lift automatically. Arms crossing the midline create torso rotation the core must resist — wasting energy. Studies show proper arm mechanics improve speed 3–5% with no change in leg effort.</p>
-    </div>
-  </div>
-</div>
-
-<!-- INJURY TABLE -->
-<div class="table-section">
-  <div class="section-title">Posture Faults and Common Injuries</div>
-  <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border)">
-    <table class="injury-table">
-      <thead>
-        <tr><th>Posture Fault</th><th>Common Injury</th><th>Mechanism</th><th>Risk</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Heel strike / overstride</td><td>Shin splints, stress fractures</td><td>High-impact GRF spike up tibia</td><td><span class="badge high">High</span></td></tr>
-        <tr><td>Low cadence under 160 spm</td><td>IT Band Syndrome, Runner's Knee</td><td>Increased hip adduction and knee load</td><td><span class="badge high">High</span></td></tr>
-        <tr><td>Forward head posture</td><td>Cervical strain, upper back pain</td><td>+5 kg load per inch forward head tilt</td><td><span class="badge med">Medium</span></td></tr>
-        <tr><td>Backward lean</td><td>Hamstring strain, hip flexor tightness</td><td>Overactivation of hamstrings to brake</td><td><span class="badge med">Medium</span></td></tr>
-        <tr><td>Arms crossing midline</td><td>Lower back pain, shoulder impingement</td><td>Torso rotation causes lumbar compensation</td><td><span class="badge med">Medium</span></td></tr>
-        <tr><td>Shoulders hunched</td><td>Neck stiffness, reduced breathing capacity</td><td>Restricted rib cage expansion</td><td><span class="badge low">Low-Med</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<footer>
-  <p>Research sources: Dr. Nicholas Romanov (Pose Method) &bull; Jack Daniels (Running Formula) &bull; Danny Dreyer (Chi Running) &bull; Heiderscheit et al. 2011 &nbsp;|&nbsp; Built with <em>Claude Code</em></p>
-</footer>
+<footer>跑步節奏動畫器 &copy; 2026 &mdash; 以 Canvas 2D 即時渲染</footer>
 
 <script>
-var targets = {
-  35:{pace:"3:30",speed:"17.1",cadence:182,stride:1.57,tip:"Elite pace. Maximise forward lean and fastest possible turnover. Every millisecond of ground contact time matters at this intensity."},
-  40:{pace:"4:00",speed:"15.0",cadence:180,stride:1.39,tip:"Advanced pace. Maintain 180 spm. Relaxed shoulders are critical — tension costs significant energy at this effort level."},
-  45:{pace:"4:30",speed:"13.3",cadence:178,stride:1.25,tip:"Sub-45 pace requires efficient mechanics. Focus on midfoot strike and 90 degree arm bend to maximise elastic energy return."},
-  50:{pace:"5:00",speed:"12.0",cadence:174,stride:1.15,tip:"Intermediate pace. Target 170–175 spm. Use a metronome app to train cadence — higher cadence means less impact force per step."},
-  55:{pace:"5:30",speed:"10.9",cadence:170,stride:1.07,tip:"Steady pace. Most energy waste at this pace is postural. Prioritise forward lean from ankles and keeping shoulders low and relaxed."},
-  60:{pace:"6:00",speed:"10.0",cadence:168,stride:0.99,tip:"Beginner pace. Focus on breathing rhythm and shoulder position. Posture corrections here prevent long-term chronic injury."},
-  70:{pace:"7:00",speed:"8.6",cadence:163,stride:0.88,tip:"Jogging pace. Even at easy effort, correct posture prevents repetitive strain. Practice neutral head position and midfoot landing every run."}
-};
-function update(m){
-  var d=targets[m];
-  document.getElementById("paceVal").textContent=d.pace+" /km";
-  document.getElementById("speedVal").textContent=d.speed+" km/h";
-  document.getElementById("cadenceVal").textContent=d.cadence+" spm";
-  document.getElementById("strideVal").textContent=d.stride+" m";
-  document.getElementById("cadenceTip").textContent="Tip: "+d.tip;
-}
-document.getElementById("speedGrid").addEventListener("click",function(e){
-  var b=e.target.closest(".speed-btn");
-  if(!b)return;
-  document.querySelectorAll(".speed-btn").forEach(function(x){x.classList.remove("active");});
-  b.classList.add("active");
-  update(parseInt(b.dataset.time));
+// ── State ──
+let speed = 12, cadence = 174, phase = 0, bgScroll = 0;
+let paused = false, lastTs = null;
+
+// ── Canvas ──
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d');
+const W = 600, H = 340;
+const GROUND_Y = 295, HIP_X = 290, HIP_Y_BASE = 212;
+const TORSO = 56, HEAD_R = 14, THIGH = 43, SHIN = 39, UARM = 25, FARM = 21;
+
+// Ambient dots (deterministic)
+const DOTS = Array.from({length:20},(_,i)=>{
+  const x = ((i*137+73)%580)+10;
+  const y = ((i*89+31)%260)+10;
+  const r = (i%3)*0.5+0.5;
+  const op = 0.08+((i*53)%40)*0.003;
+  return{x,y,r,op};
 });
-update(50);
+
+// ── Slider styling ──
+function updateSliderTrack(el){
+  const mn=+el.min, mx=+el.max, v=+el.value;
+  const pct=((v-mn)/(mx-mn))*100;
+  el.style.background=`linear-gradient(to right,#6366f1 ${pct}%,#2a2a3e ${pct}%)`;
+}
+
+// ── UI refs ──
+const speedSlider=document.getElementById('speedSlider');
+const cadSlider=document.getElementById('cadSlider');
+const autoLink=document.getElementById('autoLink');
+const pauseBtn=document.getElementById('pauseBtn');
+
+function cadRatingInfo(c){
+  if(c>=170) return{cls:'green',txt:'● 優秀'};
+  if(c>=163) return{cls:'yellow',txt:'● 良好'};
+  if(c>=155) return{cls:'yellow',txt:'● 普通'};
+  return{cls:'red',txt:'● 偏低'};
+}
+
+function fmtPace(spd){
+  const sec=3600/spd;
+  const m=Math.floor(sec/60);
+  const s=Math.round(sec%60);
+  return m+':'+(s<10?'0':'')+s;
+}
+
+function updateUI(){
+  // badge
+  document.getElementById('bSpeed').textContent=speed.toFixed(1);
+  document.getElementById('bCad').textContent=cadence;
+  // slider displays
+  document.getElementById('speedDisplay').textContent=speed.toFixed(1)+' km/h';
+  document.getElementById('paceDisplay').textContent='配速 '+fmtPace(speed)+'/km';
+  const ri=cadRatingInfo(cadence);
+  document.getElementById('cadDisplay').innerHTML=cadence+' spm <span class="rating '+ri.cls+'" id="cadRating">'+ri.txt+'</span>';
+  // metrics
+  document.getElementById('mPace').textContent=fmtPace(speed);
+  const stride=(speed/3.6/(cadence/60)).toFixed(2);
+  document.getElementById('mStride').textContent=stride+'m';
+  const leanDeg=(5+(speed-5)/17*6).toFixed(1);
+  document.getElementById('mLean').textContent=leanDeg+'°';
+  document.getElementById('mGCT').textContent=Math.round(38000/cadence)+'ms';
+  // tip
+  const tipCard=document.getElementById('tipCard');
+  const tipTitle=document.getElementById('tipTitle');
+  const tipBody=document.getElementById('tipBody');
+  if(cadence>=175){
+    tipCard.className='tip green';
+    tipTitle.textContent='步頻優秀！';
+    tipBody.textContent='你的步頻在理想範圍（175+ spm），有助於減少衝擊力、降低受傷風險並提升整體效率，繼續保持！';
+  } else if(cadence>=163){
+    tipCard.className='tip yellow';
+    tipTitle.textContent='步頻良好，可再提升';
+    tipBody.textContent='步頻接近理想範圍，嘗試再提高幾步，維持在 175 spm 以上能讓跑步更流暢省力。';
+  } else {
+    tipCard.className='tip red';
+    tipTitle.textContent='步頻偏低，建議調整';
+    tipBody.textContent='步頻低於 163 spm 可能增加衝擊力與受傷風險。建議使用節拍器輔助訓練，逐步提升至 170+ spm。';
+  }
+  // slider tracks
+  updateSliderTrack(speedSlider);
+  updateSliderTrack(cadSlider);
+}
+
+speedSlider.addEventListener('input',()=>{
+  speed=+speedSlider.value;
+  if(autoLink.checked) cadence=Math.round(155+speed*1.55), cadSlider.value=cadence;
+  updateUI();
+});
+
+cadSlider.addEventListener('input',()=>{
+  cadence=+cadSlider.value;
+  updateUI();
+});
+
+autoLink.addEventListener('change',()=>{
+  if(autoLink.checked){ cadence=Math.round(155+speed*1.55); cadSlider.value=cadence; updateUI(); }
+});
+
+pauseBtn.addEventListener('click',togglePause);
+cv.addEventListener('click',togglePause);
+
+function togglePause(){
+  paused=!paused;
+  pauseBtn.textContent=paused?'▶ 繼續':'⏸ 暫停';
+  pauseBtn.className=paused?'btn paused':'btn';
+  if(!paused) lastTs=null;
+}
+
+// ── Drawing helpers ──
+function line(x1,y1,x2,y2){ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();}
+function circle(x,y,r,fill,stroke,sw){
+  ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=sw||1;ctx.stroke();}
+}
+
+function drawLimb(x1,y1,x2,y2,color,lw,glow){
+  ctx.save();
+  ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.lineCap='round';
+  if(glow){ctx.shadowColor=glow;ctx.shadowBlur=10;}
+  line(x1,y1,x2,y2);
+  ctx.restore();
+}
+
+function drawFoot(ax,ay,sh,color,glow){
+  const fx=ax+12*Math.cos(sh), fy=ay-12*Math.sin(sh);
+  ctx.save();
+  ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.lineCap='round';
+  if(glow){ctx.shadowColor=glow;ctx.shadowBlur=8;}
+  line(ax,ay,fx,fy);
+  ctx.restore();
+}
+
+// ── Draw frame ──
+function drawFrame(){
+  const leanDeg=5+(speed-5)/17*6;
+  const lean=leanDeg*Math.PI/180;
+  const thighAmp=0.62, kneeBendMax=1.22, armAmp=0.50;
+  const bounce=5*Math.abs(Math.sin(phase));
+  const hy=HIP_Y_BASE+bounce, hx=HIP_X;
+
+  // Shoulder
+  const sx=hx-TORSO*Math.sin(lean), sy=hy-TORSO*Math.cos(lean);
+  // Head
+  const hdx=sx-(HEAD_R+2)*Math.sin(lean), hdy=sy-(HEAD_R+2)*Math.cos(lean);
+
+  // Legs
+  const rTh=thighAmp*Math.cos(phase);
+  const lTh=-thighAmp*Math.cos(phase);
+  const rKB=kneeBendMax*Math.max(0,-Math.sin(phase));
+  const lKB=kneeBendMax*Math.max(0,Math.sin(phase));
+
+  const rKx=hx+THIGH*Math.sin(rTh), rKy=hy+THIGH*Math.cos(rTh);
+  const rSh=rTh-rKB;
+  const rAx=rKx+SHIN*Math.sin(rSh), rAy=rKy+SHIN*Math.cos(rSh);
+
+  const lKx=hx+THIGH*Math.sin(lTh), lKy=hy+THIGH*Math.cos(lTh);
+  const lSh=lTh-lKB;
+  const lAx=lKx+SHIN*Math.sin(lSh), lAy=lKy+SHIN*Math.cos(lSh);
+
+  // Arms
+  const rArmA=lean-armAmp*Math.cos(phase);
+  const lArmA=lean+armAmp*Math.cos(phase);
+  const rEx=sx+UARM*Math.sin(rArmA), rEy=sy+UARM*Math.cos(rArmA);
+  const rHx=rEx+FARM*Math.sin(rArmA+Math.PI/2), rHy=rEy+FARM*Math.cos(rArmA+Math.PI/2);
+  const lEx=sx+UARM*Math.sin(lArmA), lEy=sy+UARM*Math.cos(lArmA);
+  const lHx=lEx+FARM*Math.sin(lArmA+Math.PI/2), lHy=lEy+FARM*Math.cos(lArmA+Math.PI/2);
+
+  const rightFront=Math.cos(phase)>0;
+
+  // helpers
+  function drawRightLimbs(front){
+    const lw=front?3:2;
+    const col=front?'#c4b5fd':'rgba(139,92,246,0.4)';
+    const glow=front?'#8b5cf6':null;
+    drawLimb(hx,hy,rKx,rKy,col,lw,glow);
+    drawLimb(rKx,rKy,rAx,rAy,col,lw,glow);
+    drawFoot(rAx,rAy,rSh,col,glow);
+    drawLimb(sx,sy,rEx,rEy,col,lw,glow);
+    drawLimb(rEx,rEy,rHx,rHy,col,lw,glow);
+  }
+  function drawLeftLimbs(front){
+    const lw=front?3:2;
+    const col=front?'#93c5fd':'rgba(96,165,250,0.4)';
+    const glow=front?'#60a5fa':null;
+    drawLimb(hx,hy,lKx,lKy,col,lw,glow);
+    drawLimb(lKx,lKy,lAx,lAy,col,lw,glow);
+    drawFoot(lAx,lAy,lSh,col,glow);
+    drawLimb(sx,sy,lEx,lEy,col,lw,glow);
+    drawLimb(lEx,lEy,lHx,lHy,col,lw,glow);
+  }
+  function drawBody(){
+    // Torso
+    ctx.save();
+    ctx.strokeStyle='#e2e8f0';ctx.lineWidth=3.5;ctx.lineCap='round';
+    ctx.shadowColor='#818cf8';ctx.shadowBlur=15;
+    line(hx,hy,sx,sy);
+    ctx.restore();
+    // Head
+    ctx.save();
+    ctx.shadowColor='#818cf8';ctx.shadowBlur=10;
+    circle(hdx,hdy,HEAD_R,'#0a0a18','#e2e8f0',2.5);
+    ctx.restore();
+    // Eye
+    const eyeX=hdx+(HEAD_R-4)*Math.sin(lean+0.1);
+    const eyeY=hdy-(HEAD_R-4)*Math.cos(lean+0.1)+2;
+    circle(eyeX,eyeY,2.5,'#c4b5fd');
+  }
+
+  if(rightFront){
+    drawLeftLimbs(false);
+    drawBody();
+    drawRightLimbs(true);
+  } else {
+    drawRightLimbs(false);
+    drawBody();
+    drawLeftLimbs(true);
+  }
+}
+
+// ── Draw background ──
+function drawBg(){
+  // Sky gradient
+  const sky=ctx.createLinearGradient(0,0,0,GROUND_Y);
+  sky.addColorStop(0,'#07071a');
+  sky.addColorStop(1,'#0f0f24');
+  ctx.fillStyle=sky;ctx.fillRect(0,0,W,GROUND_Y);
+
+  // Horizon glow
+  ctx.save();
+  const hGlow=ctx.createLinearGradient(0,GROUND_Y-60,0,GROUND_Y);
+  hGlow.addColorStop(0,'rgba(99,102,241,0)');
+  hGlow.addColorStop(1,'rgba(99,102,241,0.08)');
+  ctx.fillStyle=hGlow;ctx.fillRect(0,GROUND_Y-60,W,60);
+  ctx.restore();
+
+  // Ground band
+  const grd=ctx.createLinearGradient(0,GROUND_Y,0,H);
+  grd.addColorStop(0,'#0d0d22');
+  grd.addColorStop(1,'#08080f');
+  ctx.fillStyle=grd;ctx.fillRect(0,GROUND_Y,W,H-GROUND_Y);
+
+  // Ground line
+  ctx.strokeStyle='rgba(99,102,241,0.35)';ctx.lineWidth=1.5;
+  line(0,GROUND_Y,W,GROUND_Y);
+
+  // Lane dashes
+  const dashW=48, period=128;
+  const offset=bgScroll%period;
+  ctx.strokeStyle='rgba(99,102,241,0.18)';ctx.lineWidth=2;ctx.lineCap='butt';
+  for(let x=-period+offset;x<W+period;x+=period){
+    const sx=x, ex=sx+dashW;
+    ctx.beginPath();ctx.moveTo(sx,GROUND_Y+8);ctx.lineTo(ex,GROUND_Y+8);ctx.stroke();
+  }
+
+  // Motion lines (speed > 9)
+  if(speed>9){
+    const op=Math.min(1,(speed-9)/10)*0.5;
+    ctx.save();
+    for(let i=0;i<5;i++){
+      const y=GROUND_Y-60-i*28;
+      const len=20+i*12;
+      const x=HIP_X-65-i*8;
+      ctx.strokeStyle=`rgba(99,102,241,${op*(0.4+i*0.1)})`;ctx.lineWidth=1.2;
+      ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-len,y);ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  // Ambient dots
+  ctx.save();
+  for(const d of DOTS){
+    ctx.globalAlpha=d.op;
+    circle(d.x,d.y,d.r,'#a78bfa');
+  }
+  ctx.globalAlpha=1;
+  ctx.restore();
+}
+
+// ── Beat indicator ──
+function drawBeat(){
+  const beatPulse=phase%(Math.PI);
+  const bx=558, by=28;
+  if(beatPulse<0.4){
+    const t=1-beatPulse/0.4;
+    ctx.save();
+    ctx.globalAlpha=t;
+    ctx.fillStyle=`rgba(167,139,250,${t})`;
+    ctx.beginPath();ctx.arc(bx,by,8+(1-t)*5,0,Math.PI*2);ctx.fill();
+    ctx.globalAlpha=1;
+    ctx.restore();
+  }
+  // Ring
+  ctx.save();
+  ctx.strokeStyle='rgba(99,102,241,0.4)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.arc(bx,by,10,0,Math.PI*2);ctx.stroke();
+  ctx.restore();
+}
+
+// ── Pause overlay ──
+function drawPauseOverlay(){
+  ctx.save();
+  ctx.fillStyle='rgba(10,10,20,0.55)';ctx.fillRect(0,0,W,H);
+  ctx.font='bold 22px "Segoe UI",sans-serif';
+  ctx.fillStyle='rgba(226,232,240,0.9)';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('⏸ 已暫停',W/2,H/2);
+  ctx.restore();
+}
+
+// ── Animation loop ──
+function tick(ts){
+  if(!paused){
+    if(lastTs===null) lastTs=ts;
+    const dt=Math.min((ts-lastTs)/1000,0.05);
+    lastTs=ts;
+    phase+=2*Math.PI*(cadence/120)*dt;
+    bgScroll+=speed*18*dt;
+  }
+
+  ctx.clearRect(0,0,W,H);
+  drawBg();
+  drawFrame();
+  drawBeat();
+  if(paused) drawPauseOverlay();
+
+  requestAnimationFrame(tick);
+}
+
+// ── Init ──
+updateUI();
+requestAnimationFrame(tick);
 </script>
 </body>
 </html>
