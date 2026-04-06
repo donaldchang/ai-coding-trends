@@ -272,10 +272,10 @@ function drawFrame(){
   const bounce=5*Math.abs(Math.sin(phase));
   const hy=HIP_Y_BASE+bounce, hx=HIP_X;
 
-  // Shoulder
-  const sx=hx-TORSO*Math.sin(lean), sy=hy-TORSO*Math.cos(lean);
-  // Head
-  const hdx=sx-(HEAD_R+2)*Math.sin(lean), hdy=sy-(HEAD_R+2)*Math.cos(lean);
+  // Shoulder (lean forward = shoulder shifts right/forward)
+  const sx=hx+TORSO*Math.sin(lean), sy=hy-TORSO*Math.cos(lean);
+  // Head (neck continues in same forward-lean direction)
+  const hdx=sx+(HEAD_R+2)*Math.sin(lean), hdy=sy-(HEAD_R+2)*Math.cos(lean);
 
   // Legs
   const rTh=thighAmp*Math.cos(phase);
