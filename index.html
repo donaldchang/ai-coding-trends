@@ -268,8 +268,12 @@ function drawFoot(ax,ay,sh,color,glow){
 function drawFrame(){
   const leanDeg=5+(speed-5)/17*6;
   const lean=leanDeg*Math.PI/180;
-  const thighAmp=0.62, kneeBendMax=1.22, armAmp=0.50;
-  const bounce=5*Math.abs(Math.sin(phase));
+  // All amplitudes scale with speed: slow jog → small steps, sprint → big strides
+  const t=Math.min(1,Math.max(0,(speed-5)/17)); // 0 at 5 km/h, 1 at 22 km/h
+  const thighAmp  = 0.44 + t*0.36;   // 0.44–0.80 rad  (25°–46°)
+  const kneeBendMax = 0.85 + t*0.55; // 0.85–1.40 rad  (49°–80°)
+  const armAmp    = 0.34 + t*0.32;   // 0.34–0.66 rad  (19°–38°)
+  const bounce    = (3 + t*6)*Math.abs(Math.sin(phase)); // 3–9 px vertical bounce
   const hy=HIP_Y_BASE+bounce, hx=HIP_X;
 
   // Shoulder (lean forward = shoulder shifts right/forward)
